@@ -7,9 +7,13 @@ export class HelperService {
 
   constructor() { }
 
-  public getUrlParameter(urlParameterName) {
-    if (urlParameterName = (new RegExp('[?&]' + encodeURIComponent(urlParameterName) + '=([^&]*)')).exec(location.search))
-      return decodeURIComponent(urlParameterName[1]);
+  public getUrlParameter(urlParameterName: string): string | null {
+    const result = (new RegExp('[?&]' + encodeURIComponent(urlParameterName) + '=([^&]*)')).exec(location.search);
+
+    if (result !== null)
+      return decodeURIComponent(result[1]);
+
+    return null;
   }
 }
 
